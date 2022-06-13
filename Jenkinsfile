@@ -11,7 +11,7 @@ pipeline{
          stage("build a image"){
             steps{
                 script{
-                    sh "cd /OnlinebookStore;docker build -t naveen ."
+                    sh "docker build -t kallepalli/mynewimage:latest"
                 }
             }
         }
