@@ -8,5 +8,12 @@ pipeline{
                 }
             }
         }
+         stage("build a image"){
+            steps{
+                script{
+                    sh "docker build -t naveen ."
+                }
+            }
+        }
     }
 }
