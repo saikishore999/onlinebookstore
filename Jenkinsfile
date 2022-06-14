@@ -1,5 +1,8 @@
 pipeline{
     agent any
+    environment{
+        DOCKERHUB_CREDENTIALS = credentials('docker_hub')
+    }
     stages{
         stage("build a code"){
             steps{
@@ -11,7 +14,7 @@ pipeline{
          stage("build a image"){
             steps{
                 script{
-                    sh "docker build -t kallepalli/mynewimage . "
+                    sh "docker build -t kallepalli/mynewimage: $BUILD_NUMBER . "
                 }
             }
         }
