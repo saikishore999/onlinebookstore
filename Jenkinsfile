@@ -14,7 +14,7 @@ pipeline{
          stage("build a image"){
             steps{
                 script{
-                    sh "docker build -t kallepalli/mynewimage: $BUILD_NUMBER . "
+                    sh "docker build -t kallepalli/mynewimage:$BUILD_NUMBER ."
                 }
             }
         }
