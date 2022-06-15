@@ -21,7 +21,7 @@ pipeline{
         stage("push a image"){
             steps{
                 script{
-                    withCredentials([file(credentialsId: 'kallepalli', variable: 'docker_my')]) {
+                   withCredentials([usernameColonPassword(credentialsId: 'kallepalli', variable: 'docker_my')]) {
                          
                     sh "docker login -u kallepalli -p ${docker_my}"
                     }
