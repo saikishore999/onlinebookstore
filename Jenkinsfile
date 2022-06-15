@@ -18,5 +18,12 @@ pipeline{
                 }
             }
         }
+        stage("push a image"){
+            steps{
+                script{
+                    sh "docker login -u kallepalli -p ${docker_hub}"
+                }
+            }
+        }
     }
 }
