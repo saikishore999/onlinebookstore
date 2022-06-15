@@ -21,11 +21,8 @@ pipeline{
         stage("push a image"){
             steps{
                 script{
-                    withCredentials([string(credentialsId: 'na_dockerhub', variable: 'my_docker_cerd')]) {
-                        
-                        sh "docker login -u kallepalli -p ${my_docker_cerd}"
-                    }
-                        sh "docker push kallepalli/mynewimage:$BUILD_NUMBER"
+                    
+                     sh "docker push kallepalli/mynewimage:$BUILD_NUMBER"
                 }
             }
         }
