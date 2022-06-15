@@ -22,11 +22,11 @@ pipeline{
             steps{
                 script{
                     withCredentials([usernameColonPassword(credentialsId: 'docker_hub', variable: 'docker_hubc')]) {
- 
+                         
+                         sh "docker login -u kallepalli -p ${docker_hubc}"
                         }
-                    sh "docker login -u kallepalli -p ${docker_hubc}"
-                    
-                    sh "docker push kallepalli/mynewimage:$BUILD_NUMBER"
+                   
+                         sh "docker push kallepalli/mynewimage:$BUILD_NUMBER"
                 }
             }
         }
