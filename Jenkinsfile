@@ -34,7 +34,7 @@ pipeline{
                 script{
                     def dockerRun="docker run -itd --name mynewimage -p 8081:8080 kallepalli/mynewimage:${BUILD_NUMBER}"
                     sshagent(['dev_server']) {
-                        sh "ssh -o StrictHostKeyChecking=no ununtu@172.31.21.10 ${dockerRun}"
+                        sh "ssh -o StrictHostKeyChecking=no ununtu@54.234.212.180 ${dockerRun}"
              
                         }
                     
