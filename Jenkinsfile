@@ -21,10 +21,10 @@ pipeline{
         stage("push a image"){
             steps{
                 script{
-                    //withCredentials([usernameColonPassword(credentialsId: 'docker_hub', variable: 'docker_hubc')]) {
+                    withCredentials([usernameColonPassword(credentialsId: 'docker_hub', variable: 'docker_hubc')]) {
  
-                        //}
-                    sh "docker login -u kallepalli -p ${docker_hub}"
+                        }
+                    sh "docker login -u kallepalli -p ${docker_hubc}"
                     
                     sh "docker push kallepalli/mynewimage:$BUILD_NUMBER"
                 }
