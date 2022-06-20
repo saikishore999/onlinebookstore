@@ -17,8 +17,12 @@ pipeline{
             }
             steps {  
                 withSonarQubeEnv('sonarserver') {
-                    sh "${scannerHome} mvn clean package sonar:sonar"
-                        //sh "${scannerHome}/bin/sonar-scanner"
+                    //sh "${scannerHome} mvn clean package sonar:sonar
+                         sh "mvn clean verify sonar:sonar \
+                      -Dsonar.projectKey=sonarscanner \
+                      -Dsonar.host.url=http://54.196.146.76:8081 \
+                      -Dsonar.login=sqa_8e7e7528ce21150d8973583d8c64e3d2d7c55718"
+                        
                     }
                 sleep time: 30000, unit: 'MILLISECONDS'
                 script {
