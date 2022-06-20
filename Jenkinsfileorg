@@ -11,6 +11,24 @@ pipeline{
                 }
             }
         }
+        stage('Sonarqube Analysis') {
+            environment {
+              def scannerHome = tool 'SonarQubeScanner 9.5'
+            }
+            steps {  
+                withSonarQubeEnv('sonarserver') {
+                    sh "${scannerHome} mvn clean package sonar:sonar"
+                        //sh "${scannerHome}/bin/sonar-scanner"
+                    }
+                sleep time: 30000, unit: 'MILLISECONDS'
+                script {
+                        def qg = waitForQualityGate()
+                        if (qg.status != 'OK') {
+                            error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                        }
+                }
+            }
+        }
          stage("build a image"){
             steps{
                 script{
