@@ -24,16 +24,9 @@ pipeline{
                       -Dsonar.login=sqa_8e7e7528ce21150d8973583d8c64e3d2d7c55718"
                         
                     }
-                sleep time: 30000, unit: 'MILLISECONDS'
-                script {
-                        def qg = waitForQualityGate()
-                        if (qg.status != 'OK') {
-                            error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                        }
-                }
-            }
+              }
         }
-         stage("build a image"){
+        stage("build a image"){
             steps{
                 script{
                     sh "docker build -t kallepalli/mynewimage:$BUILD_NUMBER ."
