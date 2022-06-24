@@ -11,7 +11,7 @@ pipeline{
                 }
             }
         }
-        stage('Sonarqube Analysis') {
+        /*dostage('Sonarqube Analysis') {
             environment {
               def scannerHome = tool 'SonarQubeScanner 9.5'
             }
@@ -26,7 +26,7 @@ pipeline{
                     
                      }
               }
-        }
+        }*/
         stage("build a image"){
             steps{
                 script{
