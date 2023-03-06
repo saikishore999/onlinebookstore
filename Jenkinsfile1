@@ -6,5 +6,12 @@ pipeline{
                 sh 'mvn clean install'
             }
         }
+        stage("deploy"){
+            steps{
+                sshagent(['deploy_user']) {
+                   sh 'scp -o StrictHostKeyChecking=no /bookstore/target/onlinebookstore-0.0.1-SNAPSHOT.war ubuntu@100.25.148.113:/opt/tomcat/webapps'
+                 }
+            }
+        }
     }
 }
