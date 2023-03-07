@@ -9,7 +9,7 @@ pipeline{
         stage("deploy"){
             steps{
                 sshagent(['deploy_tom']){
-                   sh 'scp -o StrictHostKeyChecking=no ./bookstore/target/onlinebookstore-0.0.1-SNAPSHOT.war ubuntu@18.204.13.146:/opt/tomcat/webapps'
+                   sh 'scp -o StrictHostKeyChecking=no ./starget/onlinebookstore-0.0.1-SNAPSHOT.war ubuntu@18.204.13.146:/opt/tomcat/webapps'
                  }
             }
         }
