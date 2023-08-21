@@ -47,7 +47,7 @@ pipeline{
         stage("Run image as conatiner"){
             steps{
                 script{
-                    sh "docker run -itd --name tomcatimage -p 8081:8080 kallepalli/tomcatimage:${BUILD_NUMBER} "
+                    sh "docker run -itd --name ${DOCKER_CONTAINER_NAME} -p 8081:8080 kallepalli/${DOCKER_CONTAINER_NAME}:${BUILD_NUMBER} "
                 }
             }
         }
