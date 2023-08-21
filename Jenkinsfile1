@@ -30,20 +30,6 @@ pipeline{
                 }
             }
         }
-        stage('Deploy to Docker') {
-            steps {
-                // Stop and remove the existing Docker container (if it exists)
-                script {
-                    try {
-                        dockerContainer = docker.container("${DOCKER_CONTAINER_NAME}")
-                        dockerContainer.stop()
-                        dockerContainer.remove(force: true)
-                    } catch (Exception ignored) {
-                        // Container might not exist, so we ignore any exceptions
-                    }
-                }
-            }
-        }
         stage("Run image as conatiner"){
             steps{
                 script{
