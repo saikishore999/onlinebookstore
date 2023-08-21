@@ -1,6 +1,6 @@
 FROM tomcat:latest
 
-COPY target/*.war /usr/local/tomcat/webapps/
+COPY target/onlinebookstore-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/
 
 EXPOSE 8081
 
