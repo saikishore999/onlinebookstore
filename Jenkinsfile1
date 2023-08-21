@@ -2,6 +2,8 @@ pipeline{
     agent any
     environment{
         DOCKERHUB_CREDENTIALS= credentials('docker_hub')
+        DOCKER_IMAGE_NAME = 'my-war-app'
+        DOCKER_CONTAINER_NAME = 'tomcatimage'
     }
     stages{
         stage("build as code"){
@@ -13,7 +15,7 @@ pipeline{
             steps{
                 script{
 
-                    sh "docker build -t kallepalli/tomcatimage:${BUILD_NUMBER} ."
+                    sh "docker build -t kallepalli/${DOCKER_IMAGE_NAME}:${BUILD_NUMBER} ."
                 }
             }
         }
@@ -24,7 +26,21 @@ pipeline{
 
                     sh "docker login -u kallepalli -p ${mydockerpasswd}"
                     }
-                    sh "docker push kallepalli/tomcatimage:${BUILD_NUMBER}"
+                    sh "docker push kallepalli/${DOCKER_IMAGE_NAME}:${BUILD_NUMBER}"
+                }
+            }
+        }
+        stage('Deploy to Docker') {
+            steps {
+                // Stop and remove the existing Docker container (if it exists)
+                script {
+                    try {
+                        dockerContainer = docker.container("${DOCKER_CONTAINER_NAME}")
+                        dockerContainer.stop()
+                        dockerContainer.remove(force: true)
+                    } catch (Exception ignored) {
+                        // Container might not exist, so we ignore any exceptions
+                    }
                 }
             }
         }
