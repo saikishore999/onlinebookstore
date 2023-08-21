@@ -2,7 +2,7 @@ pipeline{
     agent any
     environment{
         DOCKERHUB_CREDENTIALS= credentials('docker_hub')
-        DOCKER_IMAGE_NAME = 'my-war-app'
+        DOCKER_IMAGE_NAME = 'tomcat'
         DOCKER_CONTAINER_NAME = 'tomcatimage'
     }
     stages{
