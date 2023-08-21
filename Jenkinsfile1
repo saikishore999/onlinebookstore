@@ -28,13 +28,6 @@ pipeline{
                 }
             }
         }
-        stage('remove a tag with image'){
-            steps{
-                script{
-                    sh "docker rm kallepalli/tomcatimage:${BUILD_NUMBER}"
-                }
-            }
-        }
         stage("Run image as conatiner"){
             steps{
                 script{
