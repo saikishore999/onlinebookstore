@@ -3,7 +3,6 @@ pipeline{
     environment{
         DOCKERHUB_CREDENTIALS= credentials('docker_hub')
         DOCKER_IMAGE_NAME = 'tomcat'
-        DOCKER_CONTAINER_NAME = 'tomcatimage'
     }
     stages{
         stage("build as code"){
@@ -33,7 +32,7 @@ pipeline{
         stage("Run image as conatiner"){
             steps{
                 script{
-                    sh "docker run -itd --name ${DOCKER_CONTAINER_NAME} -p 8081:8080 kallepalli/${DOCKER_CONTAINER_NAME}:${BUILD_NUMBER} "
+                    sh "docker run -itd --name ${DOCKER_IMAGE_NAME} -p 8081:8080 kallepalli/${DOCKER_IMAGE_NAME}:${BUILD_NUMBER} "
                 }
             }
         }
