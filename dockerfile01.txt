@@ -9,3 +9,6 @@ RUN tar -xvzf apache-tomcat-9.0.64.tar.gz
 RUN mv apache-tomcat-9.0.64/* /opt/tomcat
 EXPOSE 8080
 CMD [ "/opt/tomcat/webapps/bin/catalina.sh", "run"]
+
+
+dckr_pat_sDtaq3Wiu5UDdQJ1Jj4qtQswv-E:docker token

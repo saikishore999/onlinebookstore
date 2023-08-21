@@ -12,7 +12,7 @@ pipeline{
         stage('Build a docker image'){
             script{
                 steps{
-                    sh "docker build -t kallepalli/deploy:${BUILD_NUMBER} ."
+                    sh "docker build -t kallepalli/tomcatimage:${BUILD_NUMBER} ."
 
                 }
             }
