@@ -49,6 +49,7 @@ pipeline{
             steps{
                 script{
                     
+                    
                     sh "docker run -itd --name mynewimage -p 8081:8080 kallepalli/mynewimage:${BUILD_NUMBER}"
              
                 }

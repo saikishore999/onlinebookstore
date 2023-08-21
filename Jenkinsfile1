@@ -16,6 +16,18 @@ pipeline{
                     sh "docker build -t kallepalli/tomcatimage:${BUILD_NUMBER} ."
                 }
             }
-        }    
+        }
+        stage('push a image'){
+            steps{
+                script{
+                    withCredentials([string(credentialsId: 'dockerpwd', variable: 'mydockerpasswd')]) {
+
+                    sh "docker login -u kallepalli -p ${mydockerpasswd}"
+                    }
+                    sh "docker push kallepalli/tomcatimage:${BUILD_NUMBER}"
+                }
+            }
+
+        }  
     }
 }
