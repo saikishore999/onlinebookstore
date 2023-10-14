@@ -4,15 +4,20 @@ pipeline{
         stage("build code"){
             steps{
                 sh "mvn install"
-                sh "ls -lrt target/"
-                sh "mv target/*war target/bookstore-${BUILD_NUMBER}.war"
-                sh "ls -lrt target/"
-                sh "printenv"
             }
         }
         stage("test code"){
             steps{
                 sh "mvn test"
+            }
+        }
+        stage("code analysis"){
+            environment {
+                scannerHome = tool 'sonar-server'
+            }
+            steps{
+                withSonarQubeEnv('sonar-server')
+                sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=bookstore -Dsonar.projectName=bookstore -Dsonar.sources=. -Dsonar.java.binaries=target/classes -Dsonar.sourceEncoding=UTF-8"
             }
         }
     }
