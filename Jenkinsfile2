@@ -4,7 +4,6 @@ pipeline{
         stage("build code"){
             steps{
                 sh "mvn install"
-                sh "print env"
             }
         }
         stage("test code"){  sh "ls -lrt target/"
