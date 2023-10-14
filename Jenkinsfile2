@@ -5,6 +5,8 @@ pipeline{
             steps{
                 sh "mvn install"
                 sh "ls -lrt target/"
+                sh "mv target/*war target/bookstore-${BUILD_NUMBER}.war"
+                sh "ls -lrt target/"
                 sh "printenv"
             }
         }
