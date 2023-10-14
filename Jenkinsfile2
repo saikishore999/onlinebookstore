@@ -4,6 +4,7 @@ pipeline{
         stage("build code"){
             steps{
                 sh "mvn install"
+                sh "ls -lrt target/"
                 sh "mv target/*.jar target/onlinebookstore-snapshot-${BUILD_NUMBER}.jar"
                 sh "print env"
             }
