@@ -11,20 +11,5 @@ pipeline{
                 sh "mvn test"
             }
         }
-        stage("code analysis"){
-            environment {
-                scannerHome = tool 'sonar-server'
-            }
-            steps{
-                withSonarQubeEnv('sonar-server')
-                mvn clean verify sonar:sonar \
-                -Dsonar.projectKey=bookstore \
-                -Dsonar.projectName='bookstore' \
-                -Dsonar.host.url=http://34.234.79.64:9000 \
-                -Dsonar.token=sqp_4c8abf353da3f9231338e6f300a47c36e8a78cf7 \
-                -Dsonar.java.binaries=target/classes \
-                -Dsonar.sourceEncoding=UTF-8" \
-            }
-        }
     }
 }
