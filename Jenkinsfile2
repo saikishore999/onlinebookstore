@@ -13,6 +13,13 @@ pipeline{
             steps{
                 sh "mvn test"
             }
+        }
+        stage("deploy code"){
+            steps{
+                sshagent(['tomcat']) {
+                    sh "scp -O StrictHostKeyChecking=no book/target/onlinebookstore-0.0.1-SNAPSHOT.war ubuntu@52.203.231.133:/opt/apache-tomcat-9.0.82/webapps
+                }
+            }
         }   
     }
 }
