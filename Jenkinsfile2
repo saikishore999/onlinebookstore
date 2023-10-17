@@ -1,0 +1,23 @@
+pipeline{
+    agent any
+    environment {
+        PATH = "/usr/bin/mvn:$PATH"
+    }
+    stages{
+        stage("build code"){
+            steps{
+                sh "mvn install"
+            }
+        }
+        stage("test code"){
+            steps{
+                sh "mvn test"
+            }
+        }
+        stage("deploy code"){
+            steps{
+                sh "scp ./target/onlinebookstore-0.0.1-SNAPSHOT.war /opt/tomcat/webapps"
+            }
+        }   
+    }
+}
