@@ -2,7 +2,7 @@ pipeline{
     agent any
     environment {
         PATH = "/usr/bin/mvn:$PATH"
-        def scannerHome = tool 'SonarQube'
+        def scannerHome = tool 'sonarQube'
     }
     stages{
         stage("build code"){
@@ -22,7 +22,7 @@ pipeline{
         }
         stage("Code Analysis"){
             steps {
-                withSonarQubeEnv('SonarQube'){
+                withSonarQubeEnv('sonarQube'){
                 sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=book -Dsonar.projectName=book -Dsonar.sources=. -Dsonar.java.binaries=target/classes -Dsonar.sourceEncoding=UTF-8"
                  }
              }
