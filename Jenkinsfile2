@@ -2,6 +2,7 @@ pipeline{
     agent any
     environment {
         PATH = "/usr/bin/mvn:$PATH"
+        def scannerHome = tool 'SonarQube'
     }
     stages{
         stage("build code"){
@@ -19,5 +20,12 @@ pipeline{
                 sh "scp ./target/onlinebookstore-0.0.1-SNAPSHOT.war /opt/tomcat/webapps"
             }
         }
+        stage("Code Analysis"){
+            steps {
+                withSonarQubeEnv('SonarQube'){
+                sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=book -Dsonar.projectName=book -Dsonar.sources=. -Dsonar.java.binaries=target/classes -Dsonar.sourceEncoding=UTF-8"
+                 }
+             }
+         }
     }
 }
